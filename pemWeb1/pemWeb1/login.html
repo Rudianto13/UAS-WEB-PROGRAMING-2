@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
+    <title>Login</title>
+</head>
+<body>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4>Formulir Login</h4>
+        </div>
+        <div class="card-body">
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-e75l9NtgrRfaSaq7Xc12oOf5fKTEb+2s/2n2xBSncN/tQ8IjH8NSaXggo1c9z0n" crossorigin="anonymous"></script>
+
+<!-- Login Form Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.querySelector("#loginForm");
+
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const username = document.querySelector("#username").value;
+      const password = document.querySelector("#password").value;
+  // Check if username is "admin" and password is "123"
+  if (username === "admin" && password === "123") {
+        // Redirect to admin.html
+        window.location.href = "kelola_berita.php";
+        return;
+      }
+      // Retrieve user data from localStorage
+      const storedUserData = localStorage.getItem(username);
+
+      if (storedUserData) {
+        const user = JSON.parse(storedUserData);
+
+        if (user.password === password) {
+          alert("Login successful. Welcome, " + user.name + "!");
+            // Redirect to setelahlogin.html after successful login
+            window.location.href = "setelahlogin.html";
+        } else {
+          alert("Incorrect password. Please try again.");
+        }
+      } else {
+        alert("User not found. Please register first.");
+      }
+    });
+  });
+</script>
+
+
+<!-- Footer Section -->
+<footer class="bg-dark text-white mt-4 p-3 text-center">
+    <p>Alamat: Jl. Contoh No. 123, Kota Contoh</p>
+    <p>Nomor Telepon: (012) 345-6789</p>
+    <p>Copyright &copy;  by 21552011030_Rudianto_KELOMPOK MANDIRI_221PB_UASWEB1</p>
+</footer>
+
+</body>
+</html>
